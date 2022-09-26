@@ -1,0 +1,15 @@
+{
+  "name": "100-prisoners",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "repository": "https://github.com/alanimdeo/100-prisoners",
+  "author": "Alanimdeo",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.7.22"
+  },
+  "dependencies": {
+    "chalk": "^5.0.1"
+  }
+}

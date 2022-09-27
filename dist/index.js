@@ -23,6 +23,7 @@ class HundredPrisonersProblem {
         if (!this.waiting.includes(prisoner)) {
             throw new Error("선택한 죄수가 이미 진행했거나 없습니다.");
         }
+        this.waiting.splice(this.waiting.indexOf(prisoner), 1);
         const trial = [];
         let last = prisoner;
         while (trial.length < this.size / 2) {
@@ -45,7 +46,6 @@ class HundredPrisonersProblem {
         const trials = [];
         while (this.waiting.length > 0) {
             trials.push(this.enter(this.waiting[0]));
-            this.waiting.shift();
         }
         return trials;
     }
@@ -53,12 +53,12 @@ class HundredPrisonersProblem {
 const count = 10000;
 let successCount = 0;
 for (let i = 0; i < count; i++) {
-    console.log(`${i + 1}번째 시도`);
     const hundredPrisonersProblem = new HundredPrisonersProblem();
     const trials = hundredPrisonersProblem.solve();
     const success = trials.filter((trial) => trial.success === false).length === 0;
     writeFileSync("result.json", JSON.stringify(trials, null, 2));
-    const result = `결과: ${chalk.bold(success ? chalk.green("성공") : chalk.red("실패"))}
+    const result = `${i + 1}번째 시도
+  결과: ${chalk.bold(success ? chalk.green("성공") : chalk.red("실패"))}
   성공한 죄수: ${trials.filter((trial) => trial.success === true).length}명
   `;
     console.log(result);
